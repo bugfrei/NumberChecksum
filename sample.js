@@ -57,30 +57,27 @@ function Quersumme(zahl)
     return [...asString].reduce((a, b) => Number(a) + Number(b));
 }
 
-
-// Aus einer Zahl eine prüfbare Zahl zu machen:
-var number = 1505;
-var verifyableNumber = NumberToID(number);
-console.log("Zahl            : " + number.toString());
-console.log("Prüfbare Zahl   : " + verifyableNumber.toString());
-console.log();
-
-// Diese prüfbare Zahl prüfen:
-console.log("Zahl prüfen     : " + verifyableNumber.toString());
-if (VerifyID(verifyableNumber))
+// Beispiel: node sample.js 55
+var nr = 1;
+if (process.argv[2] && !isNaN(process.argv[2]))
 {
-    console.log("Eingegebe Zahl ist gültig.");
+    nr = Number(process.argv[2]);
+    //console.log(`Die Nummer: ${nr} entspricht der ID: ${NumberToID(nr)}`);
+    console.log(NumberToID(nr));
+
 }
 else
 {
-    console.error("Eingegebe Zahl ist ungültig.");
-}
-console.log();
+    // Aus einer Zahl eine prüfbare Zahl zu machen:
+    var number = 1505;
+    var verifyableNumber = NumberToID(number);
+    console.log("Zahl            : " + number.toString());
+    console.log("Prüfbare Zahl   : " + verifyableNumber.toString());
+    console.log();
 
-var wrongID = 15507;
-console.log("Zahl prüfen     : " + wrongID.toString());
-if (VerifyID(verifyableNumber))
-    if (VerifyID(wrongID))
+    // Diese prüfbare Zahl prüfen:
+    console.log("Zahl prüfen     : " + verifyableNumber.toString());
+    if (VerifyID(verifyableNumber))
     {
         console.log("Eingegebe Zahl ist gültig.");
     }
@@ -88,8 +85,23 @@ if (VerifyID(verifyableNumber))
     {
         console.error("Eingegebe Zahl ist ungültig.");
     }
-console.log();
+    console.log();
 
-// und aus der prüfbaren Zahl wieder die eigentliche Zahl zu machen
-var number2 = IDToNumber(verifyableNumber);
-console.log("Eigentliche Zahl: " + number2.toString());
+    var wrongID = 15507;
+    console.log("Zahl prüfen     : " + wrongID.toString());
+    if (VerifyID(verifyableNumber))
+        if (VerifyID(wrongID))
+        {
+            console.log("Eingegebe Zahl ist gültig.");
+        }
+        else
+        {
+            console.error("Eingegebe Zahl ist ungültig.");
+        }
+    console.log();
+
+    // und aus der prüfbaren Zahl wieder die eigentliche Zahl zu machen
+    var number2 = IDToNumber(verifyableNumber);
+    console.log("Eigentliche Zahl: " + number2.toString());
+}
+
