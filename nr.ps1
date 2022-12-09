@@ -9,9 +9,11 @@ if (-not([bool] $nr)) {
 else
 {
     $all = ""
+    $allArray = @()
     foreach ($n in $nr)
     {
         $o = node umwandeln.js $n
+        $allArray += $o;
         if ($all -eq "")
         {
             $all = $o;
@@ -22,7 +24,7 @@ else
         }
     }
     Write-Host "Die Umgewandelte(n) Zahl(en) lauten:"
-    Write-Host $all
+    $allArray
     Write-Host
     Write-Host "Dies wurde in die Zwischenablage kopiert" -ForegroundColor Red
     Set-Clipboard $all
